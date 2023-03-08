@@ -1,3 +1,4 @@
+import { useActions } from "@/hooks/useActions";
 import { RegisterFormSchema } from "@/utils/validation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Button } from "@mui/material";
@@ -6,13 +7,15 @@ import { FormProvider, useForm } from "react-hook-form";
 import { FormField } from "../../FormField";
 
 const RegisterForm: FC = () => {
+	const { register } = useActions();
+
 	const methods = useForm({
 		mode: "onChange",
 		resolver: yupResolver(RegisterFormSchema),
 	});
 
 	const onSubmit = async (data: any) => {
-		console.log(data);
+		register(data);
 	};
 
 	return (
@@ -20,7 +23,6 @@ const RegisterForm: FC = () => {
 			<form onSubmit={methods.handleSubmit(onSubmit)}>
 				<FormField type="text" label="Имя" name="firstName" />
 				<FormField type="text" label="Фамилия" name="lastName" />
-				<FormField type="text" label="Username" name="username" />
 				<FormField type="email" label="Email" name="email" />
 				<FormField type="password" label="Пароль" name="password" />
 				<Button

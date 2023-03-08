@@ -6,7 +6,8 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import AuthProvider from "@/providers/auth-provider/AuthProvider";
 import { TypeComponentsAuthFields } from "@/providers/auth-provider/auth-page.types";
-import { CssBaseline } from "@mui/material";
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import { theme } from "../theme";
 
 const queryClient = new QueryClient({
 	defaultOptions: {

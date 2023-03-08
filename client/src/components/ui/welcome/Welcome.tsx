@@ -1,9 +1,14 @@
+import { useAuth } from "@/hooks/useAuth";
 import { Box, Button, Container, Typography } from "@mui/material";
-import { FC, useState } from "react";
+import { useRouter } from "next/router";
+import { FC, useEffect, useState } from "react";
 import AuthDialog from "../auth-dialog/AuthDialog";
+import { useAuthRedirect } from "./useAuthRedirect";
 import styles from "./Welcome.module.scss";
 
 const Welcome: FC = () => {
+	// useAuthRedirect();
+
 	const [open, setOpen] = useState(false);
 	const toggleAuthDialog = () => {
 		setOpen(!open);
@@ -11,6 +16,18 @@ const Welcome: FC = () => {
 	const openAuthDialog = () => {
 		toggleAuthDialog();
 	};
+
+	const { user } = useAuth();
+
+	const { replace } = useRouter();
+
+	useEffect(() => {
+		if (user) {
+			replace("/mail");
+		}
+	}, [user]);
+
+	if (user) return null;
 
 	return (
 		<Box className={styles.root}>

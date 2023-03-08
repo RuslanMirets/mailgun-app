@@ -4,15 +4,18 @@ import { useForm, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FormField } from "../../FormField";
 import { LoginFormSchema } from "@/utils/validation";
+import { useActions } from "@/hooks/useActions";
 
 const LoginForm: FC = () => {
+	const { login } = useActions();
+
 	const methods = useForm({
 		mode: "onChange",
 		resolver: yupResolver(LoginFormSchema),
 	});
 
 	const onSubmit = (data: any) => {
-		console.log(data);
+		login(data);
 	};
 
 	return (

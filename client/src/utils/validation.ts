@@ -13,7 +13,6 @@ export const RegisterFormSchema = yup
 	.shape({
 		firstName: yup.string().required("Введите имя"),
 		lastName: yup.string().required("Введите фамилию"),
-		username: yup.string().required("Введите username"),
 	})
 	.concat(LoginFormSchema);
 

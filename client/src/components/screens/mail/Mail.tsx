@@ -1,11 +1,25 @@
 import MailForm from "@/components/ui/mail-form/MailForm";
 import Meta from "@/components/ui/Meta";
+import { useAuth } from "@/hooks/useAuth";
 import { Container, Paper, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import { FC } from "react";
+import { useRouter } from "next/router";
+import { FC, useEffect } from "react";
 import styles from "./Mail.module.scss";
 
 const Mail: FC = () => {
+	const { user } = useAuth();
+
+	const { replace } = useRouter();
+
+	useEffect(() => {
+		if (!user) {
+			replace("/");
+		}
+	}, [user]);
+
+	if (!user) return null;
+
 	return (
 		<Meta title="Mail">
 			<Box className={styles.root}>
