@@ -1,5 +1,4 @@
 import { LoginDto } from "./dto/login.dto";
-import { RefreshTokenDto } from "./dto/refresh-token.dto";
 import { PrismaService } from "src/prisma.service";
 import {
 	BadRequestException,
