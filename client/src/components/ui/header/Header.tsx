@@ -1,15 +1,12 @@
-// import { useAppSelector } from "@/store/hooks";
 import { useActions } from "@/hooks/useActions";
-import { useAuth } from "@/hooks/useAuth";
+import { useProfile } from "@/hooks/useProfile";
 import { Box, Button, Container, Typography } from "@mui/material";
 import { FC } from "react";
 import styles from "./Header.module.scss";
 
 const Header: FC = () => {
-	// const { user } = useAppSelector((state) => state.user);
-
 	const { logout } = useActions();
-	const { user } = useAuth();
+	const { profile } = useProfile();
 
 	const hadleLogout = () => {
 		logout();
@@ -20,8 +17,10 @@ const Header: FC = () => {
 			<Container className={styles.container} maxWidth="md">
 				<Box className={styles.body}>
 					<Typography>
-						Вы вошли как <b>{user && user.email + " " + user.email}</b>
+						Вы вошли как{" "}
+						<b>{profile && profile.firstName + " " + profile.lastName}</b>
 					</Typography>
+
 					<Button variant="contained" onClick={hadleLogout}>
 						Выйти
 					</Button>
