@@ -1,6 +1,26 @@
 import "@/assets/styles/globals.scss";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import type { AppProps } from "next/app";
+import { persistor, store } from "@/store/store";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+
+const queryClient = new QueryClient({
+	defaultOptions: {
+		queries: {
+			refetchOnWindowFocus: false,
+		},
+	},
+});
 
 export default function App({ Component, pageProps }: AppProps) {
-	return <Component {...pageProps} />;
+	return (
+		<QueryClientProvider client={queryClient}>
+			<Provider store={store}>
+				<PersistGate loading={null} persistor={persistor}>
+					<Component {...pageProps} />
+				</PersistGate>
+			</Provider>
+		</QueryClientProvider>
+	);
 }
