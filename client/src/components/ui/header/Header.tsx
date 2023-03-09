@@ -16,14 +16,17 @@ const Header: FC = () => {
 		<header className={styles.root}>
 			<Container className={styles.container} maxWidth="md">
 				<Box className={styles.body}>
-					<Typography>
-						Вы вошли как{" "}
-						<b>{profile && profile.firstName + " " + profile.lastName}</b>
-					</Typography>
+					{profile && (
+						<>
+							<Typography>
+								Вы вошли как <b>{profile.firstName + " " + profile.lastName}</b>
+							</Typography>
 
-					<Button variant="contained" onClick={hadleLogout}>
-						Выйти
-					</Button>
+							<Button variant="contained" onClick={hadleLogout}>
+								Выйти
+							</Button>
+						</>
+					)}
 				</Box>
 			</Container>
 		</header>
