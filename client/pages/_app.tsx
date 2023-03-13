@@ -8,6 +8,8 @@ import AuthProvider from "@/providers/auth-provider/AuthProvider";
 import { TypeComponentsAuthFields } from "@/providers/auth-provider/auth-page.types";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { theme } from "../theme";
+import "react-toastify/dist/ReactToastify.min.css";
+import { ToastContainer } from "react-toastify";
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -27,6 +29,16 @@ export default function App({
 				<PersistGate loading={null} persistor={persistor}>
 					<AuthProvider Component={{ isOnlyUser: Component.isOnlyUser }}>
 						<CssBaseline />
+						<ToastContainer
+							position="bottom-left"
+							autoClose={5000}
+							hideProgressBar={false}
+							newestOnTop={false}
+							closeOnClick
+							pauseOnFocusLoss
+							draggable
+							pauseOnHover
+						/>
 						<Component {...pageProps} />
 					</AuthProvider>
 				</PersistGate>
