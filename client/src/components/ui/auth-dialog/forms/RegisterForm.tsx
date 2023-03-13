@@ -15,7 +15,7 @@ const RegisterForm: FC = () => {
 	});
 
 	const onSubmit = async (data: any) => {
-		register(data);
+		await register(data);
 	};
 
 	return (

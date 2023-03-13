@@ -14,8 +14,8 @@ const LoginForm: FC = () => {
 		resolver: yupResolver(LoginFormSchema),
 	});
 
-	const onSubmit = (data: any) => {
-		login(data);
+	const onSubmit = async (data: any) => {
+		await login(data);
 	};
 
 	return (
